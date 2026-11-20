@@ -1,9 +1,9 @@
 {
-  "name": "Roblox NPC Panel",
-  "short_name": "NPC Panel",
+  "name": "NPC Bot Studio",
+  "short_name": "NPC Studio",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#090e1c",
-  "theme_color": "#0b1020",
-  "description": "Mobile NPC simulation dashboard"
+  "background_color": "#0b1020",
+  "theme_color": "#10172a",
+  "description": "Lokale NPC-Bot-Simulation im Browser"
 }
