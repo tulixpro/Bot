@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="Mobiles Dashboard für eine lokale NPC-Simulation">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>Roblox NPC Panel</title>
+<style>
+:root{color-scheme:dark;--bg:#090e1c;--panel:#141d32;--line:#293958;--muted:#9baaca;--purple:#8174ff;--green:#53e0a0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 20% 0%,#28245a 0,transparent 42%),var(--bg);color:#f5f7ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial}
+.wrap{width:min(100% - 28px,1040px);margin:0 auto;padding:25px 0 42px}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#8274ff,#4e3eb8);display:grid;place-items:center;font-size:23px}
+h1{font-size:clamp(24px,5vw,38px);line-height:1.08;letter-spacing:-1px;margin:0}.kicker,.muted{color:var(--muted)}.kicker{font-size:13px;margin-top:5px}
+.status{border:1px solid #246447;background:#10271f;color:#9af0bd;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700}
+.hero{margin:25px 0 17px;padding:21px;border:1px solid #39386c;border-radius:20px;background:linear-gradient(115deg,#25234d,#17223a 72%)}
+.hero h2{font-size:clamp(19px,4vw,25px);margin:0 0 6px}.hero p{color:#c3c9e5;margin:0}
+.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.card{min-width:0;background:linear-gradient(160deg,#17223a,#11192b);border:1px solid var(--line);border-radius:18px;padding:20px}
+h3{font-size:18px;margin:0 0 5px}.muted{font-size:14px;margin:0}
+label{display:block;font-weight:650;margin:18px 0 8px;font-size:14px}
+input,select{width:100%;min-height:48px;background:#0a1222;border:1px solid #344565;border-radius:12px;padding:12px 14px;color:#fff;font:inherit}
+button{min-height:48px;border:0;border-radius:12px;padding:12px 16px;font:700 15px system-ui;cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.45;cursor:not-allowed}.primary{width:100%;margin-top:18px;background:linear-gradient(110deg,#7568ff,#9c62ff);color:#fff}.secondary{background:#263653;color:#e8edff}.danger{background:#3b202d;color:#ffc3ca}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.metric{background:#0b1324;border:1px solid var(--line);border-radius:14px;padding:14px}
+.metric strong{display:block;font-size:clamp(23px,5vw,30px);font-variant-numeric:tabular-nums}.metric span{font-size:12px;color:var(--muted)}
+.progress-head{display:flex;justify-content:space-between;margin-top:20px;font-size:13px}.track{height:11px;background:#080f1d;border:1px solid #263552;border-radius:99px;overflow:hidden;margin:9px 0 7px}.fill{height:100%;width:0;background:linear-gradient(90deg,#7568ff,#53e0a0);transition:width .18s}
+.log{height:180px;overflow:auto;background:#080f1b;border:1px solid var(--line);border-radius:12px;padding:12px;font:12px/1.7 ui-monospace,monospace;color:#bdc9e6;margin-top:12px}
+.note{margin-top:16px;padding:13px 14px;border-radius:12px;background:#2b2415;border:1px solid #6e572b;color:#f3dca3;font-size:13px}
+footer{color:#8290ae;text-align:center;font-size:12px;margin-top:22px}
+@media(max-width:760px){.wrap{width:min(100% - 22px,560px);padding:18px 0 30px}.layout{grid-template-columns:1fr}.hero{margin-top:18px;padding:18px}.card{padding:17px}.log{height:150px}}
+@media(max-width:380px){.actions{grid-template-columns:1fr}.metrics{gap:8px}.metric{padding:12px}}
+</style>
+</head>
+<body><div class="wrap">
+<header><div class="brand"><div class="logo">🤖</div><div><h1>ROBLOX <span style="color:#a99fff">NPC PANEL</span></h1><div class="kicker">Mobile Dashboard · NPC-Simulation</div></div></div><div class="status">● DEMO BEREIT</div></header>
+<section class="hero"><h2>Deine NPC-Simulation</h2><p>Starte eine lokale Simulation und beobachte den Fortschritt live. Das Dashboard passt sich Handy, Tablet und PC an.</p></section>
+<main class="layout">
+<section class="card"><h3>Simulation konfigurieren</h3><p class="muted">Der Name dient nur als Bezeichnung deiner Demo-Szene.</p>
+<label for="username">Szenenname</label><input id="username" maxlength="32" autocomplete="off" placeholder="z. B. MeineTestwelt">
+<label for="count">Anzahl simulierter NPCs</label><select id="count"><option value="100">100 NPCs</option><option value="1000">1.000 NPCs</option><option value="5000">5.000 NPCs</option><option value="10000" selected>10.000 NPCs</option></select>
+<button class="primary" id="start">▶ Simulation starten</button><div class="actions"><button class="secondary" id="pause" disabled>Ⅱ Pause</button><button class="danger" id="reset">↺ Zurücksetzen</button></div>
+<div class="note"><strong>Hinweis:</strong> Dies ist eine reine Browser-Simulation. Sie erstellt keine Roblox-Konten und sendet keine Meldungen, Freundschaftsanfragen oder Nachrichten.</div>
+</section>
+<section class="card"><h3>Live-Status</h3><p class="muted" id="status" aria-live="polite">Bereit zum Starten.</p>
+<div class="metrics"><div class="metric"><strong id="current">0</strong><span>NPCs simuliert</span></div><div class="metric"><strong id="target">10.000</strong><span>Zielanzahl</span></div></div>
+<div class="progress-head"><span>Fortschritt</span><strong id="percent">0 %</strong></div><div class="track" role="progressbar" aria-label="Simulationsfortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress"><div class="fill" id="fill"></div></div>
+<h3 style="margin-top:20px">Aktivitätsprotokoll</h3><div class="log" id="log" aria-live="polite"><div>[Panel] Simulation bereit.</div></div>
+</section></main><footer>Unabhängiges Demo-Projekt, nicht mit Roblox Corporation verbunden.</footer></div>
+<script>
+const $=id=>document.getElementById(id);let timer=null,paused=false,value=0,goal=10000;const fmt=n=>n.toLocaleString('de-DE');
+function log(s){const d=document.createElement('div');d.textContent='['+new Date().toLocaleTimeString('de-DE')+'] '+s;$('log').prepend(d)}
+function draw(){const p=goal?Math.round(value/goal*100):0;$('current').textContent=fmt(value);$('target').textContent=fmt(goal);$('fill').style.width=p+'%';$('percent').textContent=p+' %';$('progress').setAttribute('aria-valuenow',p)}
+function stop(){if(timer!==null){clearInterval(timer);timer=null}}
+function finish(){stop();paused=false;$('pause').disabled=true;$('pause').textContent='Ⅱ Pause';$('status').textContent='Simulation abgeschlossen.';log('Fertig: '+fmt(goal)+' NPCs simuliert.')}
+function tick(){if(paused)return;value=Math.min(goal,value+Math.max(1,Math.ceil(goal/100)));draw();if(value>=goal)finish()}
+$('count').addEventListener('change',()=>{if(timer!==null)stop();paused=false;value=0;goal=Number($('count').value);draw();$('pause').disabled=true;$('status').textContent='Neue Zielanzahl eingestellt.'});
+$('start').addEventListener('click',()=>{if(timer!==null)return;if(value>=goal)value=0;goal=Number($('count').value);draw();const scene=$('username').value.trim()||'Demo-Szene';$('status').textContent='Simulation läuft: '+scene;$('pause').disabled=false;$('pause').textContent='Ⅱ Pause';paused=false;log('Gestartet: '+scene+' · Ziel '+fmt(goal)+' NPCs');timer=setInterval(tick,70)});
+$('pause').addEventListener('click',()=>{if(timer===null)return;paused=!paused;$('pause').textContent=paused?'▶ Weiter':'Ⅱ Pause';$('status').textContent=paused?'Simulation pausiert.':'Simulation läuft.';log(paused?'Simulation pausiert.':'Simulation fortgesetzt.')});
+$('reset').addEventListener('click',()=>{stop();paused=false;value=0;goal=Number($('count').value);draw();$('pause').disabled=true;$('pause').textContent='Ⅱ Pause';$('status').textContent='Bereit zum Starten.';$('log').replaceChildren();log('Simulation zurückgesetzt.')});
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));draw();
+</script></body></html>
