@@ -1,0 +1,9 @@
+{
+  "name": "Roblox NPC Panel",
+  "short_name": "NPC Panel",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090e1c",
+  "theme_color": "#0b1020",
+  "description": "Mobile NPC simulation dashboard"
+}
